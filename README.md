@@ -21,7 +21,7 @@ There were a few areas of improvement that I had with this circuit:
 
 - It was created in 2014. With adequate component research and selection, I believe I can source better components
 
-- It also lacks a built in display. I would like my counter to show the detected CPM without needing an external device to log the data.
+- It lacks a built in display. I would like my counter to show the detected CPM without needing an external device to log the data.
 
 - It only utilizes through-hole components due to being sold as a DIY kit. I would like to expand my options to include surface mount components as well.
 
@@ -38,10 +38,36 @@ My circuit can be broken down into 5 main sections.
 
 ### Battery Management System
 
+I plan on powering this circuit using a 3.7V Li-Ion battery, rechargable through a 5V USB supply.
+
+
 ### Boost Converter
+
+> I recognise that designing a boost controller using a 555 is a bad design, however at the time of this project there is a massive parts shortage affecting power management ICs, and as such I had to improvise. See the notes section for more details.
+
+The operating voltage for the M4011 GM Tube is 380V (Vmax = 550V). I plan on boosting the supplied 3V to 95V, then using a voltage multiplier, 95V to 380V.
+
+---
+
+Frequency & Duty Cycle calculations of the 555.
+
+$T_{on} = 0.693 * (R_1+R_2) * C$
+
+$T_{off} = 0.693 * R_2 * C$
+
+$f = \frac{1}{T_{on}+T_{off}}$
+
+$D = \frac{T_{on}}{{T_{on}+T_{off}}}$
+
+---
+
+- Mockup improved feedback loop for 555
 
 ### Voltage Multiplier
 
 ### Buzzer Indicator
 
 ### LCD Display
+
+
+## Notes
