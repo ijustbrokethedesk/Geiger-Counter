@@ -33,12 +33,14 @@ My circuit can be broken down into 5 main sections.
 - BMS / Power Circuitry
 - Boost Converter
 - Voltage Multiplier
-- Buzzer Indicator
+- Pulse Detector
 - LCD Display
 
 ### Battery Management System
 
 I plan on powering this circuit using a 3.7V Li-Ion battery, rechargable through a 5V USB supply.
+
+- Using MIC5501 3V LDO since 5V boost converters are in short supply. Also reduces part count and complexity.
 
 
 ### Boost Converter
@@ -62,10 +64,26 @@ $D = \frac{T_{on}}{{T_{on}+T_{off}}}$
 ---
 
 - Mockup improved feedback loop for 555
+- Removed redundant transistor on reset pin. Replaced with open collector comparator with inverted logic.
+- Use comparator with fixed reference voltage rather than relying on transistor BE-voltage as the device will be battery powered.
 
 ### Voltage Multiplier
 
-### Buzzer Indicator
+- Fixed poor math skills
+
+### Pulse Detector
+
+Case 1 (Tube Non-Conducting):
+
+- Transistor is off
+- Bias resistors pulled to ground
+
+Case 2 (Tube Conducting):
+
+- Top bias resistor produces a voltage across itself due to current impulse
+- Bottom bias resistor to form voltage divider where $V_{out} > 0.7$
+- Capacitor for RC filtering
+- Quench resistor to prevent continous conduction
 
 ### LCD Display
 
