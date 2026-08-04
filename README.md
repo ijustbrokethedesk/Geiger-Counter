@@ -40,7 +40,7 @@ My circuit can be broken down into 5 main sections.
 
 I plan on powering this circuit using a 3.7V Li-Ion battery, rechargable through a 5V USB supply.
 
-- Using MIC5501 3V LDO since 5V boost converters are in short supply. Also reduces part count and complexity.
+- Found suitable 5V Boost converter IC, removed 3V LDO
 
 
 ### Boost Converter
