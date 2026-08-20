@@ -58,24 +58,28 @@ $V_{out} = \frac{400V}{N}=133V$
 $I_{out} = (N)(1mA) = 3mA$
 
 
-$\Delta I_L
+$\Delta I_{L}'
 \approx (0.4)(I_{out})(\frac{V_{out}}{V_{in}})
 \approx 31.92mA
 $
 
 ---
 
-Frequency calculations of the 555.
+Frequency and Duty Cycle calculations of the 555.
 
 $f_{sw} = \frac{1.44}{(R_1+2R_2)C} = 14.6kHz$
+
+$D = 1 - 0.693 * f_{sw} * R_2 * C = 66\%$
 
 ---
 
 Inductor Rating
 
-$L = \frac{V_{in}*(V_{out}-V_{in})}{V_{out}*f_s*\Delta I_L} \approx 10mH$
+$L = \frac{V_{in}*(V_{out}-V_{in})}{V_{out}*f_s*\Delta I_L'} \approx 10mH$
 
+$\Delta I_L = \frac{V_{in}*D}{f_{sw}*L} = 22.6mA$
 
+$I_{sw} = \frac{\Delta I_L}{2} + \frac{I_{out}}{1-D} = 20.2mA$
 
 ### Voltage Multiplier
 
