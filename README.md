@@ -47,25 +47,35 @@ I plan on powering this circuit using a 3.7V Li-Ion battery, rechargable through
 
 > I recognise that designing a boost controller using a 555 is a bad design, however at the time of this project there is a massive parts shortage affecting power management ICs, and as such I had to improvise. See the notes section for more details.
 
-The operating voltage for the M4011 GM Tube is 380V (Vmax = 550V). I plan on boosting the supplied 3V to 95V, then using a voltage multiplier, 95V to 380V.
+To design the boost stage of the geiger counter, we determine the input voltage, output voltage, and output current specifications of the boost converter. This circuit uses a combination of a boost converter and voltage multiplier to turn the 5V input into a 400V supply for the GM tube. 
+
+As I am using a 3 stage multiplier, the boost stage only needs to output 133V. However, as the multiplier increases the output voltage, the maximum output current will be lower than the input. To assume a generous margin I rate the current consumed by the GM tube circuit to be 1mA.
+
+$V_{in} = 5V, N = 3$
+
+$V_{out} = \frac{400V}{N}=133V$
+
+$I_{out} = (N)(1mA) = 3mA$
+
+
+$\Delta I_L
+\approx (0.4)(I_{out})(\frac{V_{out}}{V_{in}})
+\approx 31.92mA
+$
 
 ---
 
-Frequency & Duty Cycle calculations of the 555.
+Frequency calculations of the 555.
 
-$T_{on} = 0.693 * (R_1+R_2) * C$
-
-$T_{off} = 0.693 * R_2 * C$
-
-$f = \frac{1}{T_{on}+T_{off}}$
-
-$D = \frac{T_{on}}{{T_{on}+T_{off}}}$
+$f_{sw} = \frac{1.44}{(R_1+2R_2)C} = 14.6kHz$
 
 ---
 
-- Mockup improved feedback loop for 555
-- Removed redundant transistor on reset pin. Replaced with open collector comparator with inverted logic.
-- Use comparator with fixed reference voltage rather than relying on transistor BE-voltage as the device will be battery powered.
+Inductor Rating
+
+$L = \frac{V_{in}*(V_{out}-V_{in})}{V_{out}*f_s*\Delta I_L} \approx 10mH$
+
+
 
 ### Voltage Multiplier
 
